@@ -3,7 +3,7 @@ from tkinter import ttk
 
 #-----functions needed for different parts of the program-----
 
-def update_window():
+def update_window_change_graph():
 
     for widget in radio_canvas.winfo_children():
         widget.destroy()
@@ -28,6 +28,7 @@ def update_window():
         title_label.place(x=600, y=80)
         value_label = ttk.Label(radio_canvas, text='Value:', font=('Arial', 13))
         value_label.place(x=600, y=130)
+
     elif graph_type_value.get() == '2':
 
         values = ['Value']
@@ -39,11 +40,50 @@ def update_window():
 
         line_table.place(x=470, y=85)
 
-        value_input_pie = ttk.Entry(radio_canvas)
-        value_input_pie.place(x=600, y=100)
+        value_input_line = ttk.Entry(radio_canvas)
+        value_input_line.place(x=600, y=100)
 
         value_label = ttk.Label(radio_canvas, text='Value:', font=('Arial', 13))
         value_label.place(x=600, y=80)
+
+    elif graph_type_value.get() == '3':
+
+        values = ['Name', 'Value']
+        bar_table = ttk.Treeview(radio_canvas, columns=values, show='headings')
+
+        for i in values:
+            bar_table.heading(i, text=i)
+            bar_table.column(i, width=70)
+
+        bar_table.place(x=400, y=85)
+
+        title_input_bar = ttk.Entry(radio_canvas)
+        title_input_bar.place(x=600, y=100)
+        value_input_bar = ttk.Entry(radio_canvas)
+        value_input_bar.place(x=600, y=150)
+
+        title_label = ttk.Label(radio_canvas, text='Title:', font=('Arial', 13))
+        title_label.place(x=600, y=80)
+        value_label = ttk.Label(radio_canvas, text='Value:', font=('Arial', 13))
+        value_label.place(x=600, y=130)
+
+    elif graph_type_value.get() == '4':
+
+        values = ['Value']
+        scatter_table = ttk.Treeview(radio_canvas, columns=values, show='headings')
+
+        for i in values:
+            scatter_table.heading(i, text=i)
+            scatter_table.column(i, width=70)
+
+        scatter_table.place(x=470, y=85)
+
+        value_input_scatter = ttk.Entry(radio_canvas)
+        value_input_scatter.place(x=600, y=100)
+
+        value_label = ttk.Label(radio_canvas, text='Value:', font=('Arial', 13))
+        value_label.place(x=600, y=80)
+
 
     root_window.update()
 
@@ -62,10 +102,7 @@ root_window.tk.call('tk', 'scaling', 1.0)
 Frame = tk.Frame(root_window, width=800, height=800)
 Frame.pack()
 
-root_canvas = tk.Canvas(Frame, width=800, height=800)
-root_canvas.pack()
-
-radio_canvas = tk.Canvas(root_canvas, width=800, height=800)
+radio_canvas = tk.Canvas(Frame, width=800, height=800)
 radio_canvas.pack()
 
 #-----root window widget generation-----
@@ -76,22 +113,22 @@ exit_button.place(x=10, y=770)
 title_label = tk.Label(Frame, text='Welcome to the Graph Generator!',font=('Arial', 15))
 title_label.place(x=290,y=10)
 
-graph_type_label = tk.Label(root_window, text='Graph Type:', font=('Arial', 13))
+graph_type_label = tk.Label(Frame, text='Graph Type:', font=('Arial', 13))
 graph_type_label.place(x=15,y=70)
 
-root_canvas.create_rectangle(10, 60, 95, 190, outline='black')
-
+radio_canvas.create_rectangle(10, 60, 95, 190, outline='black',fill='light gray')
+radio_canvas.create_rectangle(390, 75, 715, 320, outline='black',fill='light gray')
 #---graph selection radio widget---
 
 graph_type_value = tk.StringVar(value='0')
 
-pie_radio = ttk.Radiobutton(root_window,text='pie chart',variable=graph_type_value,value='1',command=update_window)
+pie_radio = ttk.Radiobutton(root_window,text='pie chart',variable=graph_type_value,value='1',command=update_window_change_graph)
 pie_radio.place(x=15,y=100)
-line_radio = ttk.Radiobutton(root_window,text='line chart',variable=graph_type_value,value='2',command=update_window)
+line_radio = ttk.Radiobutton(root_window,text='line chart',variable=graph_type_value,value='2',command=update_window_change_graph)
 line_radio.place(x=15,y=120)
-bar_radio = ttk.Radiobutton(root_window,text='bar chart',variable=graph_type_value,value='3',command=update_window)
+bar_radio = ttk.Radiobutton(root_window,text='bar chart',variable=graph_type_value,value='3',command=update_window_change_graph)
 bar_radio.place(x=15,y=140)
-scatter_radio = ttk.Radiobutton(root_window,text='scatter chart',variable=graph_type_value,value='4',command=update_window)
+scatter_radio = ttk.Radiobutton(root_window,text='scatter chart',variable=graph_type_value,value='4',command=update_window_change_graph)
 scatter_radio.place(x=15,y=160)
 
 #-----radio widget outputs-----
