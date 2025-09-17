@@ -131,7 +131,4 @@ bar_radio.place(x=15,y=140)
 scatter_radio = ttk.Radiobutton(root_window,text='scatter chart',variable=graph_type_value,value='4',command=update_window_change_graph)
 scatter_radio.place(x=15,y=160)
 
-#-----radio widget outputs-----
-
-
 root_window.mainloop()
