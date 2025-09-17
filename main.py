@@ -37,7 +37,13 @@ def update_window():
             line_table.heading(i, text=i)
             line_table.column(i, width=70)
 
-        line_table.place(x=400, y=85)
+        line_table.place(x=470, y=85)
+
+        value_input_pie = ttk.Entry(radio_canvas)
+        value_input_pie.place(x=600, y=100)
+
+        value_label = ttk.Label(radio_canvas, text='Value:', font=('Arial', 13))
+        value_label.place(x=600, y=80)
 
     root_window.update()
 
